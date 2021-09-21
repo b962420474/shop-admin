@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
 const request = axios.create({
-  baseURL: ''
+  // baseURL: import.meta.env.BASE_URL
 })
 request.interceptors.request.use(config => {
   // 统一设置token
