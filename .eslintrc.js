@@ -23,5 +23,13 @@ module.exports = {
     withDefaults: 'readonly'
   },
   rules: {
-  }
+  },
+  overrides: [
+    {
+      files: ['src/api/**/*.ts'],
+      rules: {
+        camelcase: 'off'
+      }
+    }
+  ]
 }

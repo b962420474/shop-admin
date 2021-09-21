@@ -18,5 +18,13 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    eslintPlugin()]
+    eslintPlugin()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://shop.fed.lagou.com/',
+        changeOrigin: true
+      }
+    }
+  }
 })
