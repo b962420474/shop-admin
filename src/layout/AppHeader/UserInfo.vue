@@ -25,16 +25,21 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 const store = useStore()
 const router = useRouter()
 const handleLogout = async () => {
-  await ElMessageBox.confirm('确认退出吗？', '退出提示', {
+  const result = await ElMessageBox.confirm('确认退出吗？', '退出提示', {
     confirmButtonText: '确定',
     cancelButtonText: '取消',
     type: 'warning'
-  }).catch(() => {
-    ElMessage({
-      type: 'info',
-      message: '已取消退出'
-    })
+  }).then(() => {
+    return true
   })
+    .catch(() => {
+      ElMessage({
+        type: 'info',
+        message: '已取消退出'
+      })
+      return false
+    })
+  if (!result) return
   await logout()
   store.commit('setUser', null)
   ElMessage({
