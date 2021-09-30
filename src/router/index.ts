@@ -3,6 +3,7 @@ import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 import AppLayout from '@/layout/AppLayout.vue'
 import product from './modules/product'
+import setting from './modules/setting'
 import { store } from '@/store'
 const routes:RouteRecordRaw[] = [
   {
@@ -20,7 +21,8 @@ const routes:RouteRecordRaw[] = [
           title: '首页'
         }
       },
-      product
+      product,
+      setting
     ]
   },
   {

@@ -45,6 +45,36 @@
         </template>
       </el-menu-item>
     </el-sub-menu>
+    <el-sub-menu index="2">
+      <template #title>
+        <i class="el-icon-location" />
+        <span>设置</span>
+      </template>
+      <el-sub-menu index="2-1">
+        <template #title>
+          <i class="el-icon-location" />
+          <span>权限管理</span>
+        </template>
+        <el-menu-item index="/system_admin/index">
+          <i class="el-icon-menu" />
+          <template #title>
+            管理员
+          </template>
+        </el-menu-item>
+        <el-menu-item index="/system_role/index">
+          <i class="el-icon-menu" />
+          <template #title>
+            角色
+          </template>
+        </el-menu-item>
+        <el-menu-item index="/system_menus/index">
+          <i class="el-icon-menu" />
+          <template #title>
+            规则
+          </template>
+        </el-menu-item>
+      </el-sub-menu>
+    </el-sub-menu>
   </el-menu>
 </template>
 <script lang="ts" setup>
