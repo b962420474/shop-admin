@@ -1,8 +1,9 @@
 <template>
-  <el-dialog
+  <app-dialog
     :title="props.adminId?'修改管理员':'添加管理员'"
     @open="onOpen"
-    ref="dialog"
+    @close="onClose"
+    :confirm="handleSubmit"
   >
     <el-form
       label-width="100px"
@@ -87,22 +88,12 @@
         </el-radio-group>
       </el-form-item>
     </el-form>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="close">取 消</el-button>
-        <el-button
-          type="primary"
-          @click="handleSubmit"
-        >确 定</el-button>
-      </span>
-    </template>
-  </el-dialog>
+  </app-dialog>
 </template>
 <script lang="ts" setup>
 import { createAdmin, getAdmin, getRoles, updateAdmin } from '@/api/admin'
 import { ISelectOptions } from '@/api/types/form'
-import { IFormRules, IElForm, IElDialog } from '@/types/element-plus'
-import { ElMessage } from 'element-plus'
+import { IFormRules, IElForm } from '@/types/element-plus'
 import { ref, PropType } from 'vue-demi'
 const props = defineProps({
   adminId: {
@@ -158,7 +149,11 @@ const onOpen = () => {
     isLoading.value = false
   })
 }
-
+interface IEmit{
+  (e:'success'):void
+  (e:'update:admin-id', value:null|number):void
+}
+const emit = defineEmits<IEmit>()
 const handleSubmit = async () => {
   const data = await form.value?.validate()
   if (!data) return
@@ -167,13 +162,12 @@ const handleSubmit = async () => {
   } else {
     await createAdmin(formData.value)
   }
-  ElMessage.success(props.adminId ? '修改成功' : '添加成功')
-  close()
+  emit('success')
 }
-const dialog = ref<IElDialog|null>(null)
-const close = () => {
-  if (dialog.value) {
-    dialog.value.visible = false
-  }
+const onClose = () => {
+  console.log('clear.......')
+  form.value?.clearValidate()
+  form.value?.resetFields()
+  emit('update:admin-id', null)
 }
 </script>

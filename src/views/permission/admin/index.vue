@@ -138,6 +138,7 @@
     <admin-form
       :admin-id="adminId"
       v-model="formVisible"
+      @success="success"
     />
   </page-container>
 </template>
@@ -197,4 +198,8 @@ const listLoading = ref(false)
 //
 const formVisible = ref(false)
 const adminId = ref<number|null>(null)
+const success = () => {
+  formVisible.value = false
+  loadList()
+}
 </script>
