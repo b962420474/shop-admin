@@ -136,7 +136,7 @@
       />
     </app-card>
     <admin-form
-      :admin-id="adminId"
+      v-model:admin-id="adminId"
       v-model="formVisible"
       @success="success"
     />

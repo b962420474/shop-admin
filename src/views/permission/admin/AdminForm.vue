@@ -165,7 +165,6 @@ const handleSubmit = async () => {
   emit('success')
 }
 const onClose = () => {
-  console.log('clear.......')
   form.value?.clearValidate()
   form.value?.resetFields()
   emit('update:admin-id', null)
