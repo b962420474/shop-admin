@@ -114,11 +114,13 @@
             >
               编辑
             </el-button>
-            <el-popconfirm title="确认删除吗？">
+            <el-popconfirm
+              title="确认删除吗？"
+              @confirm="handleDelete(scope.row.id)"
+            >
               <template #reference>
                 <el-button
                   type="text"
-                  @confirm="handleDelete(scope.row.id)"
                 >
                   删除
                 </el-button>
